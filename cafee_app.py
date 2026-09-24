@@ -73,18 +73,8 @@ def create_tables():
 def add_customer(name, phone):
     connection = get_connection()
     cursor = connection.cursor()
-    cursor.execute(
-            """ 
-            INSERT INTO customers
-            (name, phone, balance)
-            VALUES (?, ?, ?)
-            """,
-            (
-                name,
-                phone,
-                0
-            )
-        )
+    cursor.execute(""" INSERT INTO customers(name, phone, balance) VALUES (?, ?, ?) """,
+            (name,phone, 0)  )
     connection.commit()
     connection.close()
     return True
